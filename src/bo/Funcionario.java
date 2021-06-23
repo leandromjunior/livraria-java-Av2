@@ -32,8 +32,4 @@ public class Funcionario {
     public void setNascimento(String nascimento) {
         this.nascimento = nascimento;
     }
-
-    
-    
-
 }
