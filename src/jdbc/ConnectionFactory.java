@@ -10,7 +10,11 @@ public class ConnectionFactory {
 	private static final String DRIVE = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://database-poo.ce0bmfb0qtle.us-east-1.rds.amazonaws.com:3306/POO_BD?useTimezone=true&serverTimezone=UTC"; 
 	private static final String USER = "admin"; 
+<<<<<<< HEAD
 	private static final String SENHA = "SenhaAWS"; 
+=======
+	private static final String SENHA = "*********"; 
+>>>>>>> 1efe15ae77bb69c7a57b1402ddc0c944e27cd6a1
 	
 	
 	public static Connection getConnection() {
