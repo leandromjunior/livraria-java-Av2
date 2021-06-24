@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.event.*;
 import javax.swing.BorderFactory;
@@ -268,155 +269,69 @@ public class LivrariaView implements ActionListener {
     public static void main(String[] args) {
         
         new LivrariaView();
-/**         
-        LivrariaView crud = new LivrariaView();
 
-        System.out.println("Informe [C] para cliente, [F] para funcionario e [L] para livro");
-        Scanner in = new Scanner(System.in);
-
-        String cfl = in.next();
-        String resp = "";
-
-        if (cfl.equalsIgnoreCase("C")){
-            System.out.println("Informe a ação desejada para o CRUD de cliente:");
-        
-            resp = in.next();
-
-            if (resp.equalsIgnoreCase("c")){
-                crud.createCli();
-            }
-            else if (resp.equalsIgnoreCase("r")){
-                crud.readCli();
-            }
-            else if (resp.equalsIgnoreCase("u")){
-                crud.updateCli();
-            }
-            else if (resp.equalsIgnoreCase("d")){
-                crud.deleteCli();
-            }
-            else{
-                System.out.println("Opcao Invalida");
-            }
-        } //Condição para acessar funcionario
-        else if (cfl.equalsIgnoreCase("F")){
-            System.out.println("Informe a ação desejada para o CRUD de Funcionario:");
-        
-            resp = in.next();
-
-            if (resp.equalsIgnoreCase("c")){
-                crud.createFunc();
-            }
-            else if (resp.equalsIgnoreCase("r")){
-                crud.readFunc();
-            }
-            else if (resp.equalsIgnoreCase("u")){
-                crud.updateFunc();
-            }
-            else if (resp.equalsIgnoreCase("d")){
-                crud.deleteFunc();
-            }
-            else{
-                System.out.println("Opcao Invalida");
-            }
-        } // condicao para acessar livro
-        else if (cfl.equalsIgnoreCase("L")){
-            System.out.println("Informe a ação desejada para o CRUD de Livro:");
-        
-            resp = in.next();
-
-            if (resp.equalsIgnoreCase("c")){
-                crud.createLivro();
-            }
-            else if (resp.equalsIgnoreCase("r")){
-                crud.readLivro();
-            }
-            else if (resp.equalsIgnoreCase("u")){
-                crud.updateLivro();
-            }
-            else if (resp.equalsIgnoreCase("d")){
-                crud.deleteLivro();
-            }
-            else{
-                System.out.println("Opcao Invalida");
-            }
-        }
-        else{
-            System.out.println("Certifique-se de ter digitado a letra maiuscula ou a letra correta !");
-        }
-
-        in.close();
-*/    
     }
 
     private JFrame telaInicial;
     private JPanel painel;
-    private JLabel EscolherTabela;  	//Selecionar Cliente/Funcionario/Livro
-	private JLabel ClienteTxt;
-	private JLabel FuncionarioTxt;
-	private JLabel LivroTxt;
-    private JLabel label;
-    private JTextField opcao; 	//Entrar com o valor para acessar o BD
-    private JButton botao1;
-    private String AcessC = "C";	//Para acessar CLIENTE
-	private String AcessF = "F";	//Para acessar FUNCIONARIO
-	private String AcessL = "L";	//Para acessar LIVRO
-	private String exit = "x";
+    private JLabel user;  //usuario 
+    private JLabel senhaCod;  //senha 
+    private JLabel label; 
+    private JTextField txtUser; 
+    private JPasswordField txtSenha; 
+    private JButton b1;             
+    private String senha = "123";
 
     public LivrariaView(){
 
         telaInicial = new JFrame();
         painel = new JPanel();
 
-        painel.setBorder(BorderFactory.createEmptyBorder(50, 50,80, 100));
+        painel.setBorder(BorderFactory.createEmptyBorder(35, 35, 20, 30));
         painel.setLayout(new GridLayout(0,1));
+        
+        user = new JLabel("Usuario:"); //Entrar Usuário
+        painel.add(user);
 
-        EscolherTabela = new JLabel("Selecionar Entidade"); //Entrar com a CRUD
-		ClienteTxt = new JLabel("Cliente(C)");
-		FuncionarioTxt = new JLabel("Funcionario(F)");
-		LivroTxt = new JLabel("Livro(L)");
-        painel.add(EscolherTabela);
-		painel.add(ClienteTxt);
-		painel.add(FuncionarioTxt);
-		painel.add(LivroTxt);
+        txtUser = new JTextField();
+        painel.add(txtUser);
 
-        opcao = new JTextField();
-        painel.add(opcao);
+        senhaCod = new JLabel("Senha:"); //Entrar com senha
+        painel.add(senhaCod);
+
+        txtSenha = new JPasswordField();
+        painel.add(txtSenha);
 
         label = new JLabel();
         painel.add(label); 
 
-        botao1 = new JButton("Acessar"); //Botão
-        botao1.addActionListener((ActionListener) this);
-        painel.add(botao1);
+        b1 = new JButton("Logar"); //Botão
+        b1.addActionListener(this);
+        painel.add(b1);
 
         telaInicial.add(painel, BorderLayout.CENTER);
         telaInicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        telaInicial.setTitle("AcessarBD");
+        telaInicial.setTitle("Login");
         telaInicial.setSize(600,500);
         telaInicial.pack();
         telaInicial.setVisible(true);
 
     }
+
     @Override
     public void actionPerformed(ActionEvent e){
-
-    	if(opcao.getText().equals(AcessC))
-		{
-            new SwingCliente();
+    if(txtSenha.getText().equals(senha)){
         
-   		}else if(opcao.getText().equals(AcessF))
-    	{
-            new SwingFuncionario();
+        new Logado();
+        
+        }else
+        {
 
-		}else if(opcao.getText().equals(AcessL))
-    	{
-            new SwingLivro();
-		}
-        else if(opcao.getText().equals(exit))
-    	{
-            System.exit(0);
-		}
+        label.setText("Tente novamente '000'");
+        label.setFont(new Font("Serif", Font.ITALIC, 25));
+        label.setForeground(Color.BLACK);
 
+        }
     }
 
 }

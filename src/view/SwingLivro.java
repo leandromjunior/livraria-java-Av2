@@ -26,8 +26,6 @@ public class SwingLivro implements ActionListener  {
 	private String AcessU = "u";	//Para acessar Editar
 	private String AcessD = "d";	//Para acessar Deletar
 	private String AcessR = "r";	//Para acessar Consultar
-	private String exit = "x";
-
 
     public SwingLivro(){
 
