@@ -1,5 +1,4 @@
 package jdbc;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,9 +7,10 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 	
 	private static final String DRIVE = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://database-poo.ce0bmfb0qtle.us-east-1.rds.amazonaws.com:3306/POO_BD?useTimezone=true&serverTimezone=UTC"; 
+	private static final String URL = "jdbc:mysql://database-poo-1.c4grpsudr5vw.us-east-1.rds.amazonaws.com:3306/POO_BD_1?useTimezone=true&serverTimezone=UTC"; 
 	private static final String USER = "admin"; 
-	private static final String SENHA = "*********";	
+	private static final String SENHA = "guedesnetto"; 
+	
 	
 	public static Connection getConnection() {
         try {
